@@ -5,11 +5,24 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "github_light",
-  theme_toggle = { "github_light", "github_light" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "chadracula" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
+
+  nvdash = {
+    load_on_startup = false,
+
+    buttons = {
+      { "  Find File", "Spc f f", "Telescope find_files" },
+      { "  Recent Files", "Spc f o", "Telescope oldfiles" },
+      { "  Find Word", "Spc f g", "Telescope live_grep" },
+      { "  Bookmarks", "Spc b m", "Telescope marks" },
+      { "  Themes", "Spc t h", "Telescope themes" },
+      { "  Mappings", "Spc c h", "NvCheatsheet" },
+    },
+  },
 }
 
 M.plugins = "custom.plugins"

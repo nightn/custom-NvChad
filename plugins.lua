@@ -4,7 +4,10 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
   -- Override plugin definition options
-
+  {
+    "doums/darcula",
+    lazy = false,
+  },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,

@@ -22,3 +22,14 @@ nnoremap <leader>w /\v\s+$<CR>
 nnoremap <leader>W :%s/\v\s+$//g \| noh<CR>
 ]])
 
+vim.cmd([[
+set fileencodings=ucs-bom,utf-8,gb18030,latin1   " 文件编码
+" tab 与缩进
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set autoindent
+set cc=120   " 最大行宽
+" 仅在真彩色终端下开启
+set termguicolors
+]])
