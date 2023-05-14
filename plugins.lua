@@ -9,6 +9,10 @@ local plugins = {
     lazy = false,
   },
   {
+    "majutsushi/tagbar",
+    lazy = false,
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
   },

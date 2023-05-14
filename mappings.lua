@@ -11,6 +11,21 @@ M.general = {
       "Close all kinds of windows",
       opts = { noremap = true }
     },
+    ["<C-h>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle horizontal term",
+    },
+
+  },
+  t = {
+    ["<C-h>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle horizontal term",
+    },
   },
   v = {
     ["<C-c>"] = { '"+y', "Copy to system clipboard", opts = { noremap = true }},
@@ -25,6 +40,8 @@ M.disabled = {
     ["<leader>b"] = "",
     ["<leader>ph"] = "",
     ["<leader>rh"] = "",
+    -- term
+    ["<leader>h"] = "",
   }
 }
 
