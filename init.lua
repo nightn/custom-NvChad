@@ -29,7 +29,10 @@ set tabstop=2
 set expandtab
 set shiftwidth=2
 set autoindent
-set cc=120   " 最大行宽
+" set cc=120   " 最大行宽
 " 仅在真彩色终端下开启
 set termguicolors
+
+autocmd FileType def :set ft=cpp
 ]])
+

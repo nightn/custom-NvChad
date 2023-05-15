@@ -5,7 +5,7 @@ local plugins = {
 
   -- Override plugin definition options
   {
-    "doums/darcula",
+    "nvim-treesitter/playground",
     lazy = false,
   },
   {

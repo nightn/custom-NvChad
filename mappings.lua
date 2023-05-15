@@ -17,7 +17,10 @@ M.general = {
       end,
       "Toggle horizontal term",
     },
-
+    ["<leader>a"] = {
+      "<cmd> TSHighlightCapturesUnderCursor <CR>",
+      "TSHighlightCapturesUnderCursor"
+    },
   },
   t = {
     ["<C-h>"] = {

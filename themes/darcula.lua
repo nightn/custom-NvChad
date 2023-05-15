@@ -56,9 +56,9 @@ M.base_16 = {
   -- base0E = "#cc7832", -- orange
   -- base0F = "#808080", -- gray
 
-  base00 = "#282a36", -- Default bg
+  base00 = "#2B2B2B", -- Default bg
   base01 = "#edeff1", -- Lighter bg (status bar, line number, folding mks)
-  base02 = "#e1e3e5", -- Selection bg
+  base02 = "#214283", -- Selection bg
   base03 = "#808080", -- Comments, invisibles, line hl
   base04 = "#c7c9cb", -- Dark fg (status bars)
   base05 = "#BBBBBB", -- Default fg (caret, delimiters, Operators)
@@ -71,10 +71,47 @@ M.base_16 = {
   base0C = "#CC7832", -- Support, regex, escape chars
   base0D = "#FFC66D", -- Function, methods, headings
   base0E = "#CC7832", -- Keywords
-  base0F = "#044289", -- Deprecated, open/close embedded tags
+  base0F = "#A9B7C6", -- Deprecated, open/close embedded tags
+}
+
+local c_orange = "#cc7832"
+local c_purple = "#9373A5"
+local c_yellow = "#FFC66D"
+local c_light_blue = "#A9B7C6"
+local c_green = "#52503A"
+local c_macro_green = "#908B25"
+local c_type_blue = "#B5B6E3"
+local c_green_yellow = "#BBB529"
+local c_comment_grey = "#808080"
+
+M.polish_hl = {
+  ["@variable"] = { fg = c_light_blue },
+  ["@constant.builtin"] = { fg = c_orange },
+  ["@type.builtin"] = { fg = c_orange },
+  ["@field"] = { fg = c_purple },
+  ["@property"] = { fg = c_purple },
+  ["@function"] = { fg = c_yellow },
+  ["@function.call"] = { fg = c_yellow },
+  ["method.call"] = { fg = c_yellow },
+  Search = {
+    bg = c_green,
+  },
+  Repeat = { fg = c_orange },
+  ["@constructor"] = { fg = c_yellow },
+  ["@namespace"] = { fg = c_type_blue },
+  ["Boolean"] = { fg = c_orange },
+  ["StorageClass"] = { fg = c_orange },
+  ["PreProc"] = { fg = c_green_yellow },
+  ["Define"] = { fg = c_green_yellow },
+  ["Include"] = { fg = c_green_yellow },
+  ["Macro"] = { fg = c_macro_green },
+  ["@function.macro"] = { fg = c_macro_green },
+  ["Comment"] = { fg = c_comment_grey },
 }
 
 M.type = "dark" -- light / dark
+
+M = require("base46").override_theme(M, "darcula")
 
 return M
 
