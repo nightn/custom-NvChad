@@ -6,13 +6,21 @@ local highlights = require "custom.highlights"
 
 M.ui = {
   theme = "darcula",
-  theme_toggle = { "darcula", "darcula" },
+  theme_toggle = { "darcula", "github_light" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
 
+  statusline = {
+    separator_style = "round",
+  },
+
+  tabufline = {
+    lazyload = false,
+  },
+
   nvdash = {
-    load_on_startup = false,
+    load_on_startup = true,
 
     buttons = {
       { "  Find File", "Spc f f", "Telescope find_files" },

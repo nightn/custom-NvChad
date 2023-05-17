@@ -99,13 +99,14 @@ M.polish_hl = {
   Repeat = { fg = c_orange },
   ["@constructor"] = { fg = c_yellow },
   ["@namespace"] = { fg = c_type_blue },
-  ["Boolean"] = { fg = c_orange },
+  ["Boolean"] = { fg = c_purple, italic = true },
   ["StorageClass"] = { fg = c_orange },
   ["PreProc"] = { fg = c_green_yellow },
   ["Define"] = { fg = c_green_yellow },
   ["Include"] = { fg = c_green_yellow },
   ["Macro"] = { fg = c_macro_green },
   ["@function.macro"] = { fg = c_macro_green },
+  -- ["@constant"] = { fg = c_macro_green },
   ["Comment"] = { fg = c_comment_grey },
 }
 
