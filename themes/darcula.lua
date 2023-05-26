@@ -95,6 +95,7 @@ M.polish_hl = {
   ["method.call"] = { fg = c_yellow },
   Search = {
     bg = c_green,
+    fg = c_light_blue,
   },
   Repeat = { fg = c_orange },
   ["@constructor"] = { fg = c_yellow },
@@ -108,6 +109,7 @@ M.polish_hl = {
   ["@function.macro"] = { fg = c_macro_green },
   -- ["@constant"] = { fg = c_macro_green },
   ["Comment"] = { fg = c_comment_grey },
+  Todo = { fg = c_green_yellow, bg = "#2B2B2B", italic = true },
 }
 
 M.type = "dark" -- light / dark

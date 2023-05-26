@@ -45,17 +45,21 @@ M.disabled = {
     ["<leader>rh"] = "",
     -- term
     ["<leader>h"] = "",
+    -- buffer
+    ["<tab>"] = "",  -- [important] unmap <tab> to avoid <C-I> jump list bug
+    ["<S-tab>"] = "",
   }
 }
 
 M.lspconfig = {
   n = {
-    ["<leader>gt"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
-    },
+    -- When there are multiple definitions, the following function use quickfix, that's not so good
+    -- ["<leader>gt"] = {
+    --   function()
+    --     vim.lsp.buf.definition()
+    --   end,
+    --   "LSP definition",
+    -- },
     ["<leader>rn"] = {
       function()
         require("nvchad_ui.renamer").open()
@@ -80,6 +84,7 @@ M.telescope = {
       end,
       "Telescope lsp_references"
     },
+    ["<leader>gt"] = { "<cmd> Telescope lsp_definitions <CR>", "Goto definitions" },
     ["<leader>fw"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbols in workspace" },
     ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
     ["<leader>d"] = { "<cmd> Telescope diagnostics <CR>", "Show diagnostics" },
@@ -115,10 +120,20 @@ M.comment = {
       end,
       "Toggle comment",
     },
+    ["<leader>cu"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "Toggle comment",
+    },
   },
 
   v = {
     ["<leader>cb"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "Toggle comment",
+    },
+    ["<leader>cu"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "Toggle comment",
     },

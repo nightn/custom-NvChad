@@ -30,6 +30,7 @@ My custom config for NvChad, enhancing neovim experience
 可能要修改 nvim-cmp, 不是很好解决
 
 [done] (10) 按 goto def 的时候,会出现 warning
+```sh
 warning: multiple different client offset_encodings detected for buffer, this is not supported yet
 :LspInfo 如下
  Language client log: /home/nightn/.local/state/nvim/lsp.log
@@ -50,8 +51,10 @@ warning: multiple different client offset_encodings detected for buffer, this is
  	cmd:             /home/nightn/.local/share/nvim/mason/bin/clangd
 
  Configured servers list: cssls, tsserver, lua_ls, clangd, html
+```
 
 [done] (11) 安装 clang-format 失败, 提示 no module named 'wheel'
+```sh
   Failed
      󰚌 clang-format
       ▼ Displaying full log
@@ -67,6 +70,7 @@ warning: multiple different client offset_encodings detected for buffer, this is
             ----------------------------------------
         Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-t_chdwrb/clang-format/
         spawn: /home/nightn/.local/share/nvim/mason/packages/clang-format/venv/bin/python failed with exit code 1 and signal 0.
+```
 [解决方案] 手动安装 clang-format, 使用 pip3 install clang-format, 然后再用 mason 安装即可成功.
 <leader>fm 可用, 但是它是对整个 buf 进行 format
 
@@ -76,4 +80,7 @@ map <leader>fi to vim.lsp.buf.code_action({ apply = true })
 [done] (13) Git preview/undo 快捷键
 <leader>hp -> hunk preview
 <leader>hu -> hunk undo
+
+(14) NvChad 的 buffer next 快捷键默认配置为 <tab>, 但 <tab> 和 <C-I> 是映射关系,导致在 <C-I> 的时候出现问题
+目前将 <tab> 和 <S-tab> 快捷键都取消了
 
