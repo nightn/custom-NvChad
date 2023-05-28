@@ -22,6 +22,7 @@ nnoremap <leader>w /\v\s+$<CR>
 nnoremap <leader>W :%s/\v\s+$//g \| noh<CR>
 ]])
 
+-- Basic options
 vim.cmd([[
 set fileencodings=ucs-bom,utf-8,gb18030,latin1   " 文件编码
 " tab 与缩进
@@ -32,6 +33,9 @@ set autoindent
 " set cc=120   " 最大行宽
 " 仅在真彩色终端下开启
 set termguicolors
+
+" Disable cursorline
+set nocursorline
 
 autocmd FileType def :set ft=cpp
 
