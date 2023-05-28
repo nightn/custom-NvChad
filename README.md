@@ -84,3 +84,26 @@ map <leader>fi to vim.lsp.buf.code_action({ apply = true })
 (14) NvChad 的 buffer next 快捷键默认配置为 <tab>, 但 <tab> 和 <C-I> 是映射关系,导致在 <C-I> 的时候出现问题
 目前将 <tab> 和 <S-tab> 快捷键都取消了
 
+## Markdown 方案
+
+如何在 nvim 中高效的使用 markdown 进行写作, 我认为要完成以下几点.
+
+- [ ] 解决 mac tabby 无法输入中文标点符号的问题. 要么换终端, 要么解决这个问题. 不过, windows tabby 似乎不存在这个问题.
+
+- [x] Markdown preview 问题. 使用 markdown-preview 解决
+
+- [x] 快速拷贝粘贴图片的问题. 使用 img-paste.vim 解决
+
+- [ ] 设计一套针对 Markdown 的合理快捷键
+
+- [ ] 必要时配置 dict
+
+- [ ] table 高效输入.
+
+- [ ] 在 markdown 中输出 code 并不像直接在 nvim 中输入 code 那么丝滑.
+
+(1) 安装 markdown-preview 插件时, 编译太慢的解决方案: 手动去插件所在目录执行 npm i; npm run build 即可
+
+(2) nvim 所在的环境是 remote, 但我想使用 host 的 browser 对 markdown 文件进行 `preview`, 该怎么配置呢?
+这个不是什么问题, 参考 `markdown-preview` 的官方文档即可.
+

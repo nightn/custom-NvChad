@@ -141,5 +141,10 @@ M.comment = {
 }
 
 -- more keybinds!
+M.markdown = {
+  n = {
+    ["<leader>mp"] = { "<cmd>MarkdownPreview <CR>", "MarkdownPreview"},
+  },
+}
 
 return M

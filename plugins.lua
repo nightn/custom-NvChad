@@ -4,6 +4,35 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
   -- Override plugin definition options
+
+  -- Plugins for markdown
+  -- Preview markdown on browser
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = function ()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  -- Paste image in markdown files
+  {
+    "img-paste-devs/img-paste.vim",
+    ft = "markdown",
+  },
+  -- Simple keymaps for markdown
+  {
+    "antonk52/markdowny.nvim",
+    ft = "markdown",
+    config = function()
+      require('markdowny').setup()
+    end
+  },
+  -- Basic markdown
+  {
+    "preservim/vim-markdown",
+    -- ft = "markdown",  -- maybe uncomment later
+  },
+
   {
     "nvim-treesitter/playground",
     lazy = false,

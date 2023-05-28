@@ -57,3 +57,38 @@ if has("gui_gtk") || has("gui_gtk2") || has("gui_gnome") || has("unix")
 endif
 ]])
 
+-- options for markdown-preview
+vim.cmd([[
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 1
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+" TODO set host ip yourself
+let g:mkdp_open_ip = '192.168.56.103'
+" use a custom port to start server or empty for random
+" let g:mkdp_port = 9090
+function! g:Open_browser(url)
+  let @+=a:url
+  exe 'echom a:url'
+  " do nothing
+  " silent exe '!lemonade open 'a:url
+endfunction
+let g:mkdp_browserfunc = 'g:Open_browser'
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 0
+]])
+
+-- options for img-paste
+vim.cmd([[
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
+]])
+
