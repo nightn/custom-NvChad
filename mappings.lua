@@ -21,6 +21,7 @@ M.general = {
       "<cmd> TSHighlightCapturesUnderCursor <CR>",
       "TSHighlightCapturesUnderCursor"
     },
+    ["<leader>nv"] = { "<cmd> Navbuddy <CR>", "Navbuddy" },
   },
   t = {
     ["<C-h>"] = {
