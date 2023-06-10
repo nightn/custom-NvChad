@@ -33,6 +33,12 @@ local plugins = {
     -- ft = "markdown",  -- maybe uncomment later
   },
 
+  -- plugin for translation
+  {
+    "voldikss/vim-translator",
+    lazy = false,
+  },
+
   {
     "nvim-treesitter/playground",
     lazy = false,
