@@ -30,6 +30,11 @@ M.general = {
       end,
       "Toggle horizontal term",
     },
+    ["<C-w><C-w>"] = {
+      "<C-\\><C-n><C-w><C-w>",
+      "Switch window in terminal mode",
+      opts = { noremap = true }
+    },
   },
   v = {
     ["<C-c>"] = { '"+y', "Copy to system clipboard", opts = { noremap = true }},
@@ -138,6 +143,14 @@ M.comment = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "Toggle comment",
     },
+  },
+}
+
+M.debugger = {
+  n = {
+    -- TODO
+    -- ["<C-?>"] = { "<cmd> DapContinue <CR>", "DapContinue" },
+    -- ["<C-?>"] = { "<cmd> DapStepOver <CR>", "DapStepOver" },
   },
 }
 

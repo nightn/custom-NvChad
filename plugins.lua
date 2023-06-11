@@ -5,6 +5,30 @@ local plugins = {
 
   -- Override plugin definition options
 
+  -- Plugins for debugging
+  {
+    "mfussenegger/nvim-dap",
+    ft = { "c", "cpp" },
+    config = function ()
+      require("custom.configs.dap")
+    end
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    ft = { "c", "cpp" },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    ft = { "c", "cpp" },
+  },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    config = function ()
+      require("telescope").load_extension("dap")
+    end,
+    ft = { "c", "cpp" },
+  },
+
   -- Plugins for markdown
   -- Preview markdown on browser
   {
