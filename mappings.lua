@@ -93,7 +93,7 @@ M.telescope = {
     ["<leader>gt"] = { "<cmd> Telescope lsp_definitions <CR>", "Goto definitions" },
     ["<leader>fw"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbols in workspace" },
     ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>d"] = { "<cmd> Telescope diagnostics <CR>", "Show diagnostics" },
+    ["<leader>dd"] = { "<cmd> Telescope diagnostics <CR>", "Show diagnostics" },
     ["<C-p>"] = { "<cmd> Telescope keymaps <CR>", "Telescope keymaps"},
   }
 }
@@ -148,10 +148,33 @@ M.comment = {
 
 M.debugger = {
   n = {
-    -- TODO
-    -- ["<C-?>"] = { "<cmd> DapContinue <CR>", "DapContinue" },
-    -- ["<C-?>"] = { "<cmd> DapStepOver <CR>", "DapStepOver" },
+    ["<leader>dc"] = { "<cmd> DapContinue <CR>", "DapContinue (continue)" },
+    ["<leader>dt"] = { "<cmd> DapTerminate <CR>", "DapTerminate (terminate)" },
+    ["<leader>dn"] = { "<cmd> DapStepOver <CR>", "DapStepOver (next)" },
+    ["<leader>ds"] = { "<cmd> DapStepInto <CR>", "DapStepInto (step)" },
+    ["<leader>df"] = { "<cmd> DapStepOut <CR>", "DapStepOut (finish)" },
+    ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "DapToggleBreakpoint (breakpoint)" },
+    ["<leader>dk"] = {
+      function ()
+        require("dapui").eval()
+      end,
+      "dapui evaluate expression"
+    },
+    ["<leader>du"] = {
+      function ()
+        require("dapui").toggle()
+      end,
+      "dapui toggle"
+    },
   },
+  v = {
+    ["<leader>dk"] = {
+      function ()
+        require("dapui").eval()
+      end,
+      "dapui evaluate expression"
+    }
+  }
 }
 
 -- more keybinds!

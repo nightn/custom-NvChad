@@ -4,6 +4,11 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
   -- Override plugin definition options
+  -- highlights for justfile, see https://github.com/casey/just
+  {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
 
   -- Plugins for debugging
   {
@@ -15,11 +20,9 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    ft = { "c", "cpp" },
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    ft = { "c", "cpp" },
   },
   {
     "nvim-telescope/telescope-dap.nvim",
