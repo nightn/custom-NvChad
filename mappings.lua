@@ -61,6 +61,8 @@ M.disabled = {
     -- buffer
     ["<tab>"] = "",  -- [important] unmap <tab> to avoid <C-I> jump list bug
     ["<S-tab>"] = "",
+    -- toggle line number
+    ["<leader>n"] = "",
   }
 }
 
@@ -100,7 +102,7 @@ M.telescope = {
     ["<leader>gt"] = { "<cmd> Telescope lsp_definitions <CR>", "Goto definitions" },
     ["<leader>fw"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbols in workspace" },
     ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>dd"] = { "<cmd> Telescope diagnostics <CR>", "Show diagnostics" },
+    ["<leader>ld"] = { "<cmd> Telescope diagnostics <CR>", "List diagnostics" },
     ["<C-p>"] = { "<cmd> Telescope keymaps <CR>", "Telescope keymaps"},
   }
 }
@@ -156,27 +158,56 @@ M.gitsigns = {
 
 M.debugger = {
   n = {
-    ["<leader>dc"] = { "<cmd> DapContinue <CR>", "DapContinue (continue)" },
-    ["<leader>dt"] = { "<cmd> DapTerminate <CR>", "DapTerminate (terminate)" },
-    ["<leader>dn"] = { "<cmd> DapStepOver <CR>", "DapStepOver (next)" },
-    ["<leader>ds"] = { "<cmd> DapStepInto <CR>", "DapStepInto (step)" },
-    ["<leader>df"] = { "<cmd> DapStepOut <CR>", "DapStepOut (finish)" },
-    ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "DapToggleBreakpoint (breakpoint)" },
-    ["<leader>dk"] = {
+    -- execution control
+    ["<leader>C"] = { "<cmd> DapContinue <CR>", "DapContinue (continue)" },
+    ["<leader>n"] = { "<cmd> DapStepOver <CR>", "DapStepOver (next)" },
+    ["<leader>s"] = { "<cmd> DapStepInto <CR>", "DapStepInto (step)" },
+    ["<leader>R"] = {
+      function ()
+        require("dap").run_to_cursor()
+      end,
+      "Dap run to cursor (temporarily removes all breakpoints)",
+    },
+    -- breakpoint
+    ["<leader>bb"] = { "<cmd> DapToggleBreakpoint <CR>", "DapToggleBreakpoint (breakpoint)" },
+    ["<leader>B"] = {
+      function ()
+        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end,
+      "Dap set conditional breakpoint",
+    },
+    ["<leader>dd"] = {
+      function ()
+        require("dap").focus_frame()
+      end,
+      "Dap focus the current frame, like zz",
+    },
+    -- evaluate
+    ["<leader>k"] = {
       function ()
         require("dapui").eval()
       end,
       "dapui evaluate expression"
     },
+    -- toggle dap ui
     ["<leader>du"] = {
       function ()
         require("dapui").toggle()
       end,
       "dapui toggle"
     },
+    -- list backtrace
+    ["<leader>bt"] = { "<cmd> Telescope dap frames <CR>", "Telescope dap frames" },
+    -- list breakpoints
+    ["<leader>bl"] = { "<cmd> Telescope dap list_breakpoints <CR>", "Telescope dap list_breakpoints" },
+    -- list all dap commands
+    ["<leader>dp"] = { "<cmd> Telescope dap commands <CR>", "Telescope dap commands" },
+    -- not sure
+    ["<leader>dt"] = { "<cmd> DapTerminate <CR>", "DapTerminate (terminate)" },
+    ["<leader>df"] = { "<cmd> DapStepOut <CR>", "DapStepOut (finish)" },
   },
   v = {
-    ["<leader>dk"] = {
+    ["<leader>k"] = {
       function ()
         require("dapui").eval()
       end,

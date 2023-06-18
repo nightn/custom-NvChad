@@ -1,9 +1,27 @@
 local overrides = require("custom.configs.overrides")
 
+local filetypes_debugable = { "c", "cpp" }
+
 ---@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
+  {
+    "folke/neodev.nvim",
+    ft = { "lua" },
+    config = function ()
+      require("neodev").setup({
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      })
+    end
+  },
+
+  -- show complete count of searching matches instead of "> 99"
+  {
+    "google/vim-searchindex",
+    lazy = false,
+  },
+
   -- highlights for justfile, see https://github.com/casey/just
   {
     "NoahTheDuke/vim-just",
@@ -13,13 +31,17 @@ local plugins = {
   -- Plugins for debugging
   {
     "mfussenegger/nvim-dap",
-    ft = { "c", "cpp" },
+    ft = filetypes_debugable,
     config = function ()
       require("custom.configs.dap")
     end
   },
   {
     "rcarriga/nvim-dap-ui",
+    ft = filetypes_debugable,
+    config = function()
+      require "custom.configs.dap-ui"
+    end
   },
   {
     "theHamsta/nvim-dap-virtual-text",
@@ -29,7 +51,7 @@ local plugins = {
     config = function ()
       require("telescope").load_extension("dap")
     end,
-    ft = { "c", "cpp" },
+    ft = filetypes_debugable,
   },
 
   -- Plugins for markdown
@@ -82,10 +104,42 @@ local plugins = {
     end,
     lazy = false,
   },
+
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
+    dependencies = {
+      -- autopairing of (){}[] etc
+      {
+        "windwp/nvim-autopairs",
+        opts = {
+          fast_wrap = {},
+          -- disable autopair for ` for dap-repl filetype
+          disable_filetype = { "TelescopePrompt", "vim", "dap-repl" },
+        }
+      }
+    }
   },
+  -- enable auto-completion for dap-repl
+  {
+    "rcarriga/cmp-dap",
+    event = "InsertEnter",
+    config = function()
+      require("cmp").setup({
+        enabled = function()
+          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+              or require("cmp_dap").is_dap_buffer()
+        end
+      })
+
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+    end
+  },
+
 
   {
     "neovim/nvim-lspconfig",

@@ -100,7 +100,7 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 vim.cmd([[
 let g:translator_default_engines = [ 'bing' ]
 " Display translation in a window
-nnoremap <silent> <leader>s <Plug>TranslateW
-vnoremap <silent> <leader>s <Plug>TranslateWV
+nnoremap <silent> <leader>ts <Plug>TranslateW
+vnoremap <silent> <leader>ts <Plug>TranslateWV
 ]])
 
