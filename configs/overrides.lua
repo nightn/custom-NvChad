@@ -38,6 +38,11 @@ M.mason = {
     -- c/cpp stuff
     "clangd",
     "clang-format",
+
+    -- dap adapters for debugging
+    -- "cpptools",
+    -- "js-debug-adapter",
+    -- "bash-debug-adapter",
   },
   github = {
     -- The template URL to use when downloading assets from GitHub.

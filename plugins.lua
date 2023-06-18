@@ -1,6 +1,6 @@
 local overrides = require("custom.configs.overrides")
 
-local filetypes_debugable = { "c", "cpp" }
+local filetypes_debugable = { "c", "cpp", "javascript", "typescript", "sh" }
 
 ---@type NvPluginSpec[]
 local plugins = {

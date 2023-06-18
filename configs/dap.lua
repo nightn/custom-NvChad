@@ -1,5 +1,34 @@
 local dap = require('dap')
 
+-- for javascript, typescript
+dap.adapters["pwa-node"] = {
+  type = "server",
+  host = "localhost",
+  port = "${port}",
+  executable = {
+    command = "node",
+    -- 💀 Make sure to update this path to point to your installation
+    args = {
+      os.getenv("HOME") .. "/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+      "${port}"
+    },
+  }
+}
+
+dap.configurations.javascript = {
+  {
+    type = "pwa-node",
+    request = "launch",
+    name = "Launch file",
+    program = "${file}",
+    cwd = "${workspaceFolder}",
+  },
+}
+
+dap.configurations.typescript = dap.configurations.javascript
+
+
+-- for c, c++, rust
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
@@ -59,6 +88,37 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
+
+
+-- for bash
+dap.adapters.bashdb = {
+  type = 'executable';
+  command = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/bash-debug-adapter';
+  name = 'bashdb';
+}
+
+dap.configurations.sh = {
+  {
+    type = 'bashdb';
+    request = 'launch';
+    name = "Launch file";
+    showDebugOutput = true;
+    pathBashdb = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb';
+    pathBashdbLib = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir';
+    trace = true;
+    file = "${file}";
+    program = "${file}";
+    cwd = '${workspaceFolder}';
+    pathCat = "cat";
+    pathBash = "/bin/bash";
+    pathMkfifo = "mkfifo";
+    pathPkill = "pkill";
+    args = {};
+    env = {};
+    terminalKind = "integrated";
+  }
+}
+
 
 local dap_breakpoint_color_dark = {
   breakpoint = {
