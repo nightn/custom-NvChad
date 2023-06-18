@@ -4,14 +4,16 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "Enter command mode", opts = { nowait = true } },
-    ["[b"] = { "<cmd> bp <CR>", "Previouse buffer" },
-    ["]b"] = { "<cmd> bn <CR>", "Next buffer" },
+    -- ["[b"] = { "<cmd> bp <CR>", "Previouse buffer" },
+    -- ["]b"] = { "<cmd> bn <CR>", "Next buffer" },
+    ["H"] = { "<cmd> bp <CR>", "Previouse buffer" },
+    ["L"] = { "<cmd> bn <CR>", "Next buffer" },
     ["<leader>q"] = {
       "<cmd> cclose | lclose | pclose | helpclose <CR>",
       "Close all kinds of windows",
       opts = { noremap = true }
     },
-    ["<C-h>"] = {
+    ["<C-\\>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -24,7 +26,7 @@ M.general = {
     ["<leader>nv"] = { "<cmd> Navbuddy <CR>", "Navbuddy" },
   },
   t = {
-    ["<C-h>"] = {
+    ["<C-\\>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -35,6 +37,11 @@ M.general = {
       "Switch window in terminal mode",
       opts = { noremap = true }
     },
+    -- switch between windows
+    ["<C-h>"] = { "<C-\\><C-n><C-w>h", "Window left" },
+    ["<C-l>"] = { "<C-\\><C-n><C-w>l", "Window right" },
+    ["<C-j>"] = { "<C-\\><C-n><C-w>j", "Window down" },
+    ["<C-k>"] = { "<C-\\><C-n><C-w>k", "Window up" },
   },
   v = {
     ["<C-c>"] = { '"+y', "Copy to system clipboard", opts = { noremap = true }},
@@ -117,34 +124,35 @@ M.gitsigns = {
   }
 }
 
-M.comment = {
-  -- toggle comment in both modes
-  n = {
-    ["<leader>cb"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "Toggle comment",
-    },
-    ["<leader>cu"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "Toggle comment",
-    },
-  },
-
-  v = {
-    ["<leader>cb"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "Toggle comment",
-    },
-    ["<leader>cu"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "Toggle comment",
-    },
-  },
-}
+-- We use NvChad default kemap (<leader>/) to toggle comment, the following config will be removed
+-- M.comment = {
+--   -- toggle comment in both modes
+--   n = {
+--     ["<leader>cb"] = {
+--       function()
+--         require("Comment.api").toggle.linewise.current()
+--       end,
+--       "Toggle comment",
+--     },
+--     ["<leader>cu"] = {
+--       function()
+--         require("Comment.api").toggle.linewise.current()
+--       end,
+--       "Toggle comment",
+--     },
+--   },
+--
+--   v = {
+--     ["<leader>cb"] = {
+--       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+--       "Toggle comment",
+--     },
+--     ["<leader>cu"] = {
+--       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+--       "Toggle comment",
+--     },
+--   },
+-- }
 
 M.debugger = {
   n = {
