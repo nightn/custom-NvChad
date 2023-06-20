@@ -3,7 +3,7 @@ local dap = require('dap')
 -- for javascript, typescript
 dap.adapters["pwa-node"] = {
   type = "server",
-  host = "localhost",
+  host = "127.0.0.1",  -- not work in some case, use 127.0.0.1 instead
   port = "${port}",
   executable = {
     command = "node",
@@ -21,6 +21,10 @@ dap.configurations.javascript = {
     request = "launch",
     name = "Launch file",
     program = "${file}",
+    args = function ()
+      local args_string = vim.fn.input("Input arguments: ")
+      return vim.split(args_string, " ")
+    end,
     cwd = "${workspaceFolder}",
   },
 }
