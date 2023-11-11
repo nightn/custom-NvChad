@@ -157,7 +157,20 @@ local plugins = {
             "SmiteshP/nvim-navic",
             "MunifTanjim/nui.nvim"
         },
-        opts = { lsp = { auto_attach = true } }
+        opts = {
+          lsp = { auto_attach = true },
+          window = {
+            size = "90%",
+            sections = {
+              left = {
+                size = "15%",
+              },
+              mid = {
+                size = "25%"
+              },
+            }
+          }
+        }
       }
     },
     config = function()
