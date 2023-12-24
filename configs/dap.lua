@@ -31,9 +31,30 @@ dap.configurations.javascript = {
 
 dap.configurations.typescript = dap.configurations.javascript
 
+local adapter_gdb = {
+  type = "executable",
+  command = "gdb",  -- requires gdb 14.0+
+  args = { "-i", "dap" }
+}
+
+local config_gdb = {
+  {
+    name = "Launch",
+    type = "gdb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    args = function ()
+      local args_string = vim.fn.input("Input arguments: ")
+      return vim.split(args_string, " ")
+    end,
+    cwd = "${workspaceFolder}",
+  },
+}
 
 -- for c, c++, rust
-dap.adapters.cppdbg = {
+local adapter_cpptools = {
   id = 'cppdbg',
   type = 'executable',
   -- you should install dap adapter by Mason, or download it yourself and put it in Mason dir
@@ -43,7 +64,7 @@ dap.adapters.cppdbg = {
   },
 }
 
-dap.configurations.cpp = {
+local config_cpptools = {
   {
     name = "Launch file",
     type = "cppdbg",
@@ -89,6 +110,14 @@ dap.configurations.cpp = {
   --   },
   -- },
 }
+
+-- cpptools (uncomment this if adapters.gdb does not work)
+-- dap.adapters.cppdbg = adapter_cpptools
+-- dap.configurations.cpp = config_cpptools
+
+-- gdb (requires gdb 14.0+)
+dap.adapters.gdb = adapter_gdb
+dap.configurations.cpp = config_gdb
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
