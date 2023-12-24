@@ -1,7 +1,5 @@
 local overrides = require("custom.configs.overrides")
 
-local filetypes_debugable = { "c", "cpp", "javascript", "typescript", "sh" }
-
 ---@type NvPluginSpec[]
 local plugins = {
 
@@ -31,14 +29,12 @@ local plugins = {
   -- Plugins for debugging
   {
     "mfussenegger/nvim-dap",
-    ft = filetypes_debugable,
     config = function ()
       require("custom.configs.dap")
     end
   },
   {
     "rcarriga/nvim-dap-ui",
-    ft = filetypes_debugable,
     config = function()
       require "custom.configs.dap-ui"
     end
@@ -51,7 +47,6 @@ local plugins = {
     config = function ()
       require("telescope").load_extension("dap")
     end,
-    ft = filetypes_debugable,
   },
 
   -- Plugins for markdown
@@ -90,7 +85,6 @@ local plugins = {
 
   {
     "nvim-treesitter/playground",
-    lazy = false,
   },
   {
     "majutsushi/tagbar",
@@ -102,7 +96,6 @@ local plugins = {
     config = function ()
       require("telescope").load_extension("fzf")
     end,
-    lazy = false,
   },
 
   {
@@ -140,38 +133,39 @@ local plugins = {
     end
   },
 
+  {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim"
+    },
+    opts = {
+      lsp = { auto_attach = true },
+      window = {
+        size = "90%",
+        sections = {
+          left = {
+            size = "15%",
+          },
+          mid = {
+            size = "25%"
+          },
+        }
+      }
+    }
+  },
 
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-      {
-        "SmiteshP/nvim-navbuddy",
-        dependencies = {
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim"
-        },
-        opts = {
-          lsp = { auto_attach = true },
-          window = {
-            size = "90%",
-            sections = {
-              left = {
-                size = "15%",
-              },
-              mid = {
-                size = "25%"
-              },
-            }
-          }
-        }
-      }
+      -- -- format & linting
+      -- {
+      --   "jose-elias-alvarez/null-ls.nvim",
+      --   config = function()
+      --     require "custom.configs.null-ls"
+      --   end,
+      -- },
     },
     config = function()
       require "plugins.configs.lspconfig"

@@ -23,7 +23,14 @@ M.general = {
       "<cmd> TSHighlightCapturesUnderCursor <CR>",
       "TSHighlightCapturesUnderCursor"
     },
-    ["<leader>nv"] = { "<cmd> Navbuddy <CR>", "Navbuddy" },
+    ["<leader>nv"] = {
+      function ()
+        require("nvim-navbuddy")
+        vim.cmd("Navbuddy")
+      end,
+      -- "<cmd> Navbuddy <CR>",
+      "Navbuddy",
+    },
   },
   t = {
     ["<C-\\>"] = {
@@ -169,7 +176,13 @@ M.debugger = {
       "Dap run to cursor (temporarily removes all breakpoints)",
     },
     -- breakpoint
-    ["<leader>bb"] = { "<cmd> DapToggleBreakpoint <CR>", "DapToggleBreakpoint (breakpoint)" },
+    ["<leader>bb"] = {
+      -- "<cmd> DapToggleBreakpoint <CR>",
+      function ()
+        require("dap").toggle_breakpoint()
+      end,
+      "DapToggleBreakpoint (breakpoint)"
+    },
     ["<leader>B"] = {
       function ()
         require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
