@@ -98,7 +98,7 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 
 -- options for vim-translator
 vim.cmd([[
-let g:translator_default_engines = [ 'bing' ]
+let g:translator_default_engines = [ 'google' ]
 " Display translation in a window
 nnoremap <silent> <leader>ts <Plug>TranslateW
 vnoremap <silent> <leader>ts <Plug>TranslateWV
