@@ -71,7 +71,8 @@ local config = {
     },
   },
   mappings = {
-    edit = "e",
+    -- 'e' is conflict with vim shortcuts, so I use 'E' here
+    edit = "E",
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
     remove = "d",
